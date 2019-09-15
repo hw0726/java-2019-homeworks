@@ -17,6 +17,8 @@
   * 葫芦娃初始化：加载葫芦娃的配置文件
   * 对葫芦娃的名字和颜色分别进行冒泡排序和二分排序
 
+外部的HuluwaSort可以调用HuluwaManager中的函数对葫芦娃进行排序，当葫芦娃交换位置的时候，调用Huluwa类中的get_move进行移动，并输出位置
+
 ## 3. 类结构
 
 ### 3. 1. class Location
@@ -25,10 +27,36 @@
 
 ##### public
 
-| 方法           | 作用             |
-| -------------- | ---------------- |
-| `print_loc()`  | 输出葫芦娃位置   |
-| `set_x(int x)` | 设置葫芦娃的位置 |
+| 方法                | 作用             |
+| ------------------- | ---------------- |
+| `void print_loc()`  | 输出葫芦娃位置   |
+| `void set_x(int x)` | 设置葫芦娃的位置 |
 
-## 4. 实现方法
+### 3.2 class Huluwa
 
+#### 方法 
+
+##### public
+
+| 方法                                                         | 作用                                         |
+| ------------------------------------------------------------ | -------------------------------------------- |
+| `void get_move(Location old_loc, Location new_loc)`          | 将葫芦娃从旧位置移动到新位置，并输出位置变换 |
+| `void assign_profiles(String name, String color, Location loc)` | 给葫芦娃赋予属性                             |
+
+### 3.3 HuluwaManager
+
+#### 方法
+
+##### public
+
+| 方法                   | 作用                           |
+| ---------------------- | ------------------------------ |
+| `void HuluwaManager()` | 加载conf中的葫芦娃配置信息，和 |
+
+##### private
+
+| 方法                                                         | 作用                             |
+| ------------------------------------------------------------ | -------------------------------- |
+| `void bubble_sort(List<Huluwa> elems, Comparator<Huluwa> compare_function)` | 根据compare_function进行冒泡排序 |
+| `void insertsort_with_binary_search(List<Huluwa> elems, Comparator<Huluwa> compare_function)` | 根据compare_function进行二分排序 |
+| `void swap_order()`                                          | 使葫芦娃打乱顺序                 |
